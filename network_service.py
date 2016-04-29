@@ -35,14 +35,15 @@ class NetworkService:
         while True:
             for host in hosts:
                 try:
-                    self.tcp_client = tcp_client_service.TcpClientService(host, 5500)
-                    self.tcp_list[host] = self.tcp_client
+                    if host not in self.tcp_list:
+                        self.tcp_client = tcp_client_service.TcpClientService(host, 5500)
+                        self.tcp_list[host] = self.tcp_client
 
-                    LOG.info("Node Discover %s" % host)
+                        LOG.info("Node Discover %s" % host)
 
-                    msg_list = ['publish', self.ip_addr, str(self.port)]
-                    msg = ",".join(msg_list)
-                    self.tcp_client.send(msg)
+                        msg_list = ['publish', self.ip_addr, str(self.port)]
+                        msg = ",".join(msg_list)
+                        self.tcp_client.send(msg)
                 except:
                     time.sleep(1)
 
