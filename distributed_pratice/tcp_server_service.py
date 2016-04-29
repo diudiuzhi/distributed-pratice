@@ -24,6 +24,9 @@ class TcpServerService:
             data_list = conn.recv(1024).split(",")
             if data_list[0] == "publish":
                 self.threadpool.add_job(self.discover_node, conn, address)
+            if data_list[0] == "node_info":
+                self.threadpool.add_job(self.get_node_info)
+
             time.sleep(1)
 
     def send(self):
@@ -33,4 +36,8 @@ class TcpServerService:
         pass
 
     def discover_node(self, conn, address):
-        print "Establish  connected to %s" % address
+        print "Establish  connected to %s" % str(address)
+
+
+    def get_node_info(self):
+        print "get node info "

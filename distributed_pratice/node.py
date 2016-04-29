@@ -22,6 +22,8 @@ class Node:
     def get_node_id(self):
         return self.node_id
 
+def main():
+    a = Node("node1", "11")
 
 if __name__ == "__main__":
     a = Node("node1", "000001")
