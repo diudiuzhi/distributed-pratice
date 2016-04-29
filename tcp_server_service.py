@@ -21,7 +21,10 @@ class TcpServerService:
         print "Start to listen"
         while True:
             conn, address = self.socket.accept()
-            self.threadpool.add_job(self.dojob, conn, address)
+            data_list = conn.recv(1024).split(",")
+            if data_list[0] == "publish":
+                self.threadpool.add_job(self.discover_node, conn, address)
+            time.sleep(1)
 
     def send(self):
         pass
@@ -29,7 +32,5 @@ class TcpServerService:
     def receive(self):
         pass
 
-    def dojob(self, conn, address):
-        while True:
-            print "Establish  connected to %s" ,address
-            time.sleep(1)
+    def discover_node(self, conn, address):
+        print "Establish  connected to %s" % address
