@@ -13,7 +13,7 @@ LOG = logging.getLogger(__name__)
 
 class NetworkService:
     def __init__(self):
-        self.ip_addr = "10.166.224.163"
+        self.ipaddr = "10.166.224.163"
         self.port = 5500
         self.tcp_server = tcp_server_service.TcpServerService(self.ip_addr, self.port)
         self.threadpool = threadpool.Threadpool()
@@ -50,9 +50,3 @@ class NetworkService:
     def listen(self):
         self.threadpool.add_job(self.tcp_server.listen)
         LOG.info("Node start to listening at %s:%d" % (self.ip_addr, self.port))
-
-    def send(self):
-        pass
-
-    def receive(self):
-        pass

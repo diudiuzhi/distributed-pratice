@@ -38,6 +38,5 @@ class TcpServerService:
     def discover_node(self, conn, address):
         print "Establish  connected to %s" % str(address)
 
-
     def get_node_info(self):
         print "get node info "

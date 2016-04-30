@@ -7,13 +7,16 @@ from setuptools import setup
 
 base_dir = os.path.dirname(__file__)
 setup(
-    name='distributed-pratice',
+    name='sloth',
     version='1.0.0',
-    description="just pratice",
+    description="just pratice distributed program",
     author="hzhouzhe",
     setup_requires='setuptools',
     entry_points={
-        'console_scripts': ['distributed-pratice=distributed_pratice.node:main']
+        'console_scripts': ['sloth=sloth.bootstrap.sloth:main']
     },
+    install_requires=[
+        'oslo.config>=1.2.0,<2.0.0'
+    ],
     packages=find_packages()
 )
